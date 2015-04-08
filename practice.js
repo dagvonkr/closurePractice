@@ -32,8 +32,11 @@ var callFriend = function(){
 //Above you're given a callFriend function that returns another function.
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
-var callJake = callFriend(callF('4352159248'));
+var callJake = callFriend();
 
+callJake('435-215-9248');
+
+// Jævla geni! 
 
 
 //Next Problem
@@ -44,17 +47,26 @@ var callJake = callFriend(callF('4352159248'));
   Write a function called makeCounter that makes the following code work properly.
 */
 
+
+
+var makeCounter = function() {
+  var n = 0;
+  function counter() {
+    n = n + 1;
+    // console.log('n er ' + n);
+    return n;
+    
+  }
+  return counter;
+};
+
+
   //Code Here
   var count = makeCounter();
   count() // 1
   count() // 2
   count() // 3
   count() // 4
-
-
-
-//Next Problem
-
 
 
 /*
@@ -64,6 +76,30 @@ var callJake = callFriend(callF('4352159248'));
   After the function has been called N number of times, console.log('STAHHP');
 */
 
+ var anotherFunc = function(cb, n) {
+  var counter = 0;
+    return function() {  
+      if(counter < n) {  
+        console.log(counter, n); 
+        counter++;
+       return cb();
+    }
+      else {
+        console.log('STAHHP');
+    }
+  }
+} 
 
+var newFunc = function() {
+    console.log('running newFunc');
+  }
+
+
+var inner = anotherFunc(newFunc, 1);
+
+inner(); //>> 'running newFunc'
+inner(); //>> 'STAHHP'
+inner(); //>> 'STAHHP'
+inner(); //>> 'STAHHP'
 
 
